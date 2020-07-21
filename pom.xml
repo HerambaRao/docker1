@@ -8,11 +8,11 @@
 		<version>2.3.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.docker</groupId>
-	<artifactId>docker</artifactId>
+	<groupId>com.product.catalog</groupId>
+	<artifactId>productcatalog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>docker</name>
-	<description>Demo docker project for Spring Boot</description>
+	<name>productcatalog</name>
+	<description>product catalog</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -27,7 +27,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.2.32</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
 		<dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-devtools</artifactId>
@@ -48,7 +64,7 @@
 	</dependencies>
 
 	<build>
-	<finalName>dockerdemo</finalName>
+	<finalName>productcatalog</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
