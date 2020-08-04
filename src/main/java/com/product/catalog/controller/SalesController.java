@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.product.catalog.model.Sales;
+import com.product.catalog.pojo.SalesBarChart;
+import com.product.catalog.pojo.SalesDto;
 import com.product.catalog.service.SalesService;
 
 import ch.qos.logback.classic.Logger;
@@ -30,21 +31,21 @@ public class SalesController {
 	private SalesService salesService;
 	
 	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Sales> saveSales(@RequestBody Sales sales){
+	public ResponseEntity<SalesDto> saveSales(@RequestBody SalesDto salesDto){
 		logger.info("Save Sales");
-		return new ResponseEntity<Sales>(salesService.saveSalesService(sales), HttpStatus.CREATED);
+		return new ResponseEntity<SalesDto>(salesService.saveSalesService(salesDto), HttpStatus.CREATED);
 	}
 	
 	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Sales> updateSales(@RequestBody Sales sales){
+	public ResponseEntity<SalesDto> updateSales(@RequestBody SalesDto salesDto){
 		logger.info("Update Sales");
-		return new ResponseEntity<Sales>(salesService.saveSalesService(sales), HttpStatus.OK);
+		return new ResponseEntity<SalesDto>(salesService.saveSalesService(salesDto), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/get/{salesId}")
-	public ResponseEntity<Sales> getSalesById(@PathVariable("salesId") Long salesId){
+	public ResponseEntity<SalesDto> getSalesById(@PathVariable("salesId") Long salesId){
 		logger.info("get Sales");
-		return new ResponseEntity<Sales>(salesService.getSalesById(salesId), HttpStatus.OK);
+		return new ResponseEntity<SalesDto>(salesService.getSalesById(salesId), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/delete/{salesId}")
@@ -55,7 +56,12 @@ public class SalesController {
 	}
 	
 	@GetMapping(value = "/get/all")
-	public ResponseEntity<List<Sales>> getAllSales(){
-		return new ResponseEntity<List<Sales>>(salesService.getAllSales(), HttpStatus.OK);
+	public ResponseEntity<List<SalesDto>> getAllSales(){
+		return new ResponseEntity<List<SalesDto>>(salesService.getAllSales(), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/salesChart")
+	public ResponseEntity<SalesBarChart> getSalesChart(){
+		return new ResponseEntity<SalesBarChart>(salesService.getSalesChart(), HttpStatus.OK);
 	}
 }

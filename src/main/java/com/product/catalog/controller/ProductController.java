@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.product.catalog.model.Product;
-import com.product.catalog.model.ProductCategory;
+import com.product.catalog.pojo.ProductDto;
+import com.product.catalog.pojo.ProductCategoryDto;
 import com.product.catalog.service.ProductService;
 
 import ch.qos.logback.classic.Logger;
@@ -32,31 +32,31 @@ public class ProductController {
 	
 	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+	public ResponseEntity<ProductDto> saveProduct(@RequestBody ProductDto productDto){
 		logger.info("Saving Product");
-		Product productRes = productService.saveProduct(product); 
-		return new ResponseEntity<Product>(productRes, HttpStatus.CREATED);
+		ProductDto productRes = productService.saveProduct(productDto); 
+		return new ResponseEntity<ProductDto>(productRes, HttpStatus.CREATED);
 	}
 	
 	
 	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
+	public ResponseEntity<ProductDto> updateProduct(@RequestBody ProductDto productDto) {
 		logger.info("Update Product");
-		Product productRes = productService.saveProduct(product);
-		return new ResponseEntity<Product>(productRes, HttpStatus.CREATED);
+		ProductDto productRes = productService.saveProduct(productDto);
+		return new ResponseEntity<ProductDto>(productRes, HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value = "/get/{productId}")
-	public ResponseEntity<Product> getProductById(@PathVariable("productId") Long productId){
+	public ResponseEntity<ProductDto> getProductById(@PathVariable("productId") Long productId){
 		logger.info("get Product");
-		Product prodcut = null;
+		ProductDto prodcut = null;
 		try {
 			prodcut = productService.getProductById(productId);
 		} catch( Exception ex) {
 			throw new RuntimeException("Processing Error");
 		}
-		return new ResponseEntity<Product>(prodcut , HttpStatus.OK);
+		return new ResponseEntity<ProductDto>(prodcut , HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/delete/{productId}")
@@ -68,8 +68,8 @@ public class ProductController {
 	
 	
 	@GetMapping(value = "/get/all")
-	public ResponseEntity<List<Product>> getAllProducts(){
-		return new ResponseEntity<List<Product>>(productService.getAllProducts(), HttpStatus.OK);
+	public ResponseEntity<List<ProductDto>> getAllProducts(){
+		return new ResponseEntity<List<ProductDto>>(productService.getAllProducts(), HttpStatus.OK);
 	}
 	
 	

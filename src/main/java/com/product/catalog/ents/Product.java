@@ -1,4 +1,4 @@
-package com.product.catalog.model;
+package com.product.catalog.ents;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +20,8 @@ private Long categoryId;
 private String name;
 @Column(name = "Description")
 private String description;
+
+
 
 
 
@@ -47,6 +49,9 @@ public String getDescription() {
 public void setDescription(String description) {
 	this.description = description;
 }
+
+
+
 
 @Override
 public int hashCode() {

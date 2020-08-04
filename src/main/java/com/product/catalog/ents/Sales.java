@@ -1,4 +1,4 @@
-package com.product.catalog.model;
+package com.product.catalog.ents;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,23 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Manufacturer")
-public class Manufacturer {
-	
+@Table(name="Sales")
+public class Sales {
+
 	@Id
 	@Column(name = "Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name="Product_ID")
-	private Long ProductId;
-	@Column(name="Count")
+	@Column(name = "Product_ID")
+	private Long productId;
+	@Column(name = "Count")
 	private Long count;
-	@Column(name="Country")
+	@Column(name = "Country")
 	private String country;
-	@Column(name="Region")
+	@Column(name = "Region")
 	private String region;
-	
-	
 	
 	
 	public Long getId() {
@@ -34,10 +32,10 @@ public class Manufacturer {
 		this.id = id;
 	}
 	public Long getProductId() {
-		return ProductId;
+		return productId;
 	}
 	public void setProductId(Long productId) {
-		ProductId = productId;
+		this.productId = productId;
 	}
 	public Long getCount() {
 		return count;
@@ -57,20 +55,16 @@ public class Manufacturer {
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ProductId == null) ? 0 : ProductId.hashCode());
 		result = prime * result + ((count == null) ? 0 : count.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
 		result = prime * result + ((region == null) ? 0 : region.hashCode());
 		return result;
 	}
-	
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,12 +73,7 @@ public class Manufacturer {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Manufacturer other = (Manufacturer) obj;
-		if (ProductId == null) {
-			if (other.ProductId != null)
-				return false;
-		} else if (!ProductId.equals(other.ProductId))
-			return false;
+		Sales other = (Sales) obj;
 		if (count == null) {
 			if (other.count != null)
 				return false;
@@ -95,6 +84,11 @@ public class Manufacturer {
 				return false;
 		} else if (!country.equals(other.country))
 			return false;
+		if (productId == null) {
+			if (other.productId != null)
+				return false;
+		} else if (!productId.equals(other.productId))
+			return false;
 		if (region == null) {
 			if (other.region != null)
 				return false;
@@ -102,7 +96,7 @@ public class Manufacturer {
 			return false;
 		return true;
 	}
-
+	
 	
 	
 	

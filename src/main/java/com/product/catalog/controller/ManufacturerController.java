@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.product.catalog.model.Manufacturer;
+import com.product.catalog.pojo.ManufacturerDto;
+import com.product.catalog.pojo.SalesBarChart;
 import com.product.catalog.service.ManufacturerService;
 
 import ch.qos.logback.classic.Logger;
@@ -30,21 +31,21 @@ public class ManufacturerController {
 	private ManufacturerService manufacturerService ;
 	
 	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Manufacturer> saveManufacturer(@RequestBody Manufacturer manufacturer){
+	public ResponseEntity<ManufacturerDto> saveManufacturer(@RequestBody ManufacturerDto manufacturerDto){
 		logger.info("Saving the manufacturer details");
-		return new ResponseEntity<Manufacturer>(manufacturerService.saveManufacturer(manufacturer), HttpStatus.CREATED);
+		return new ResponseEntity<ManufacturerDto>(manufacturerService.saveManufacturer(manufacturerDto), HttpStatus.CREATED);
 		
 	}
 	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Manufacturer> updateManufacturer(@RequestBody Manufacturer manufacturer){
+	public ResponseEntity<ManufacturerDto> updateManufacturer(@RequestBody ManufacturerDto manufacturerDto){
 		logger.info("Updating the manufacturer details");
-		return new ResponseEntity<Manufacturer>(manufacturerService.saveManufacturer(manufacturer), HttpStatus.OK);
+		return new ResponseEntity<ManufacturerDto>(manufacturerService.saveManufacturer(manufacturerDto), HttpStatus.OK);
 		
 	}
 	@GetMapping(value = "/get/{manufacturerId}")
-	public ResponseEntity<Manufacturer> getManufacturerById(@PathVariable("manufacturerId") Long manufacturerId){
+	public ResponseEntity<ManufacturerDto> getManufacturerById(@PathVariable("manufacturerId") Long manufacturerId){
 		logger.info("get the manufacturer details");
-		return new ResponseEntity<Manufacturer>(manufacturerService.getManufacturerById(manufacturerId), HttpStatus.OK);
+		return new ResponseEntity<ManufacturerDto>(manufacturerService.getManufacturerById(manufacturerId), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/delete/{manufacturerId}")
@@ -55,8 +56,12 @@ public class ManufacturerController {
 	}
 	
 	@GetMapping(value = "/get/all")
-	public ResponseEntity<List<Manufacturer>> getAllManufacturers(){
-		return new ResponseEntity<List<Manufacturer>>(manufacturerService.getAllManufacturers(), HttpStatus.OK);
+	public ResponseEntity<List<ManufacturerDto>> getAllManufacturers(){
+		return new ResponseEntity<List<ManufacturerDto>>(manufacturerService.getAllManufacturers(), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/manufacturerChart")
+	public ResponseEntity<SalesBarChart> getManufacturerChart(){
+		return new ResponseEntity<SalesBarChart>(manufacturerService.getManufacturerChart(), HttpStatus.OK);
+	}
 }

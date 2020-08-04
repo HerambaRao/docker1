@@ -1,4 +1,4 @@
-package com.product.catalog.model;
+package com.product.catalog.ents;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,10 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 
 @Entity
@@ -46,6 +42,9 @@ public String getCategory() {
 public void setCategory(String category) {
 	this.category = category;
 }
+
+
+
 @Override
 public int hashCode() {
 	final int prime = 31;

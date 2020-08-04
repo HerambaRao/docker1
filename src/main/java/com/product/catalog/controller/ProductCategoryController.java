@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.product.catalog.model.Manufacturer;
-import com.product.catalog.model.ProductCategory;
+import com.product.catalog.pojo.ManufacturerDto;
+import com.product.catalog.pojo.ProductCategoryDto;
 import com.product.catalog.service.ProductCategoryService;
 
 import ch.qos.logback.classic.Logger;
@@ -31,25 +31,25 @@ public class ProductCategoryController {
 	
 	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductCategory> saveProductCategory(@RequestBody ProductCategory productCategory){
+	public ResponseEntity<ProductCategoryDto> saveProductCategory(@RequestBody ProductCategoryDto productCategoryDto){
 		logger.debug("save productCategory ");
-		ProductCategory productCatRes = productCategoryService.saveProductCategory(productCategory); 
-		return new ResponseEntity<ProductCategory>(productCatRes, HttpStatus.CREATED);
+		ProductCategoryDto productCatRes = productCategoryService.saveProductCategory(productCategoryDto); 
+		return new ResponseEntity<ProductCategoryDto>(productCatRes, HttpStatus.CREATED);
 	}
 	
 	
 	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductCategory> updateProductCategory(@RequestBody ProductCategory productCategory) {
+	public ResponseEntity<ProductCategoryDto> updateProductCategory(@RequestBody ProductCategoryDto productCategoryDto) {
 		logger.debug("update productCategory ");
-		ProductCategory productCatRes = productCategoryService.saveProductCategory(productCategory);
-		return new ResponseEntity<ProductCategory>(productCatRes, HttpStatus.OK);
+		ProductCategoryDto productCatRes = productCategoryService.saveProductCategory(productCategoryDto);
+		return new ResponseEntity<ProductCategoryDto>(productCatRes, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/get/{productCategoryId}")
-	public ResponseEntity<ProductCategory> getProductCategoryById(@PathVariable("productCategoryId") Long productCategoryId){
+	public ResponseEntity<ProductCategoryDto> getProductCategoryById(@PathVariable("productCategoryId") Long productCategoryId){
 		logger.debug("get productCategory ");
-		return new ResponseEntity<ProductCategory>(productCategoryService.getProductCategoryById(productCategoryId), HttpStatus.OK);
+		return new ResponseEntity<ProductCategoryDto>(productCategoryService.getProductCategoryById(productCategoryId), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/delete/{productCategoryId}")
@@ -61,7 +61,7 @@ public class ProductCategoryController {
 	
 	
 	@GetMapping(value = "/get/all")
-	public ResponseEntity<List<ProductCategory>> getAllProductCategories(){
-		return new ResponseEntity<List<ProductCategory>>(productCategoryService.getAllProductCategories(), HttpStatus.OK);
+	public ResponseEntity<List<ProductCategoryDto>> getAllProductCategories(){
+		return new ResponseEntity<List<ProductCategoryDto>>(productCategoryService.getAllProductCategories(), HttpStatus.OK);
 	}
 }
